@@ -4,7 +4,7 @@
 	 */
 --]]
 
-local Class = require 'sc.Class'
+local Class = require 'sc_nvim.Class'
 
 --[[
 	/*
