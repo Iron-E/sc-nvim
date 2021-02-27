@@ -7,12 +7,6 @@
 local Class = {}
 local cmd = vim.api.nvim_command
 
-function Class.abstract_method(class, name)
-	class[name] = function()
-		cmd('echoerr "\n\tSubclass of `'..Class.of(class)..'` has not implemented `'..name..'`!"')
-	end
-end
-
 ---------------------------------
 --[[ SUMMARY:
 	* Define a class-metatable.
@@ -39,13 +33,26 @@ end
 --[[ SUMMARY:
 	* Instantiate a class.
 ]]
---[[
+--[[ PARAMS:
 	* `class` => the class to instantiate.
 	* `base` => the data to use (`{}` by default)
 ]]
 -------------------------------
 function Class.new(class, base)
 	return setmetatable(base or {}, class)
+end
+
+-------------------------------------------
+--[[ SUMMARY
+	* Mark a certain function as not having a default implementation.
+]]
+--[[ PARAMS
+	* `class` => the class which must implement the method.
+	* `name` => the name of the method which must be implemented.
+]]
+-------------------------------------------
+function Class.not_implemented(class, name)
+	cmd('echoerr "\n\tSubclass of `'..Class.of(class)..'` has not implemented `'..name..'`!"')
 end
 
 --------------------
