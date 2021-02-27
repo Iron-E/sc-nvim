@@ -20,5 +20,23 @@ local Class = require 'sc_nvim.Class'
 
 local Adapter = Class.define 'Adapter'
 
--- Method to determine if the text surrounding the cursor is tabular data.
-Class.abstract_method(Adapter, 'is_table')
+---------------------------------------
+--[[SUMMARY:
+	* Determine whether or not there is a table surrounding (`column`, `line`).
+]]
+--[[ PARAMS:
+	* `line` => the line number to look for a table around.
+	* `column` => the column number to look for a table around.
+]]
+---------------------------------------
+function Adapter.is_table(line, column)
+	Class.not_implemented(Adapter, 'is_table')
+end
+
+--[[
+	/*
+	 * EXPORTS
+	 */
+--]]
+
+return Adapter
